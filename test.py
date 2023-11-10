@@ -7,19 +7,17 @@ from plot import add_to_floats
 
 
 def test_get_neighbors():
-    # 示例
     point = (5, 5)
     neighbors = get_neighbors(point)
     print(neighbors)
 
 
 def test_generate_dataset():
-    # 生成数据集
-    grid_size = 10  # 设定网格大小
-    num_nodes = 32  # 总节点数
+    grid_size = 10
+    num_nodes = 32
     dataset = generate_dataset(num_nodes, grid_size)
 
-    # 绘制数据集
+    # Plot the dataset
     plt.figure(figsize=(10, 10))
     plt.scatter(*zip(*dataset["obstacles"]), marker='X', color='red', label='Obstacles')
     plt.scatter(*dataset["start"], marker='o', color='green', label='Start')

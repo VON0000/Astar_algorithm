@@ -66,8 +66,8 @@ def a_star(start: tuple, goal: tuple, obstacles: set) -> list:
 
 
 if __name__ == '__main__':
-    grid_size = 10  # 设定网格大小
-    num_obstacles = 25  # 总节点数
+    grid_size = 10  # Set grid size
+    num_obstacles = 25  # Total number of obstacles
     dataset = generate_dataset(num_obstacles, grid_size)
     draw_grid_origin(dataset)
     path = a_star(dataset["start"], dataset["goal"], dataset["obstacles"])

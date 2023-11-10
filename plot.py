@@ -6,11 +6,11 @@ from matplotlib import pyplot as plt, patches
 def draw_grid_origin(dataset: dict):
     fig, ax = plt.subplots()
 
-    # 设置网格大小
+    # Set the grid size
     ax.set_xlim([0, 10])
     ax.set_ylim([0, 10])
 
-    # 添加正方形
+    # add obstacles squares
     for x in range(10):
         for y in range(10):
             if (x, y) in dataset["obstacles"]:
@@ -26,11 +26,11 @@ def draw_grid_origin(dataset: dict):
 def plot_grid(dataset: dict, path: list):
     fig, ax = plt.subplots()
 
-    # 设置网格大小
+    # Set the grid size
     ax.set_xlim([0, 10])
     ax.set_ylim([0, 10])
 
-    # 添加正方形
+    # add obstacles squares
     for x in range(10):
         for y in range(10):
             if (x, y) in dataset["obstacles"]:
@@ -50,10 +50,10 @@ def plot_grid(dataset: dict, path: list):
 def add_to_floats(plot_dataset: dict):
     for key, value in plot_dataset.items():
         if isinstance(value, tuple) and all(isinstance(item, float) for item in value):
-            # 如果值是一个浮点数元组
+            # if the value is a tuple, update each float in the tuple
             plot_dataset[key] = tuple(item + 0.5 for item in value)
         elif isinstance(value, set):
-            # 如果值是一个集合，更新集合中的每个浮点数
+            # if the value is a set, update each float in the set
             new_set = set()
             for item in value:
                 if isinstance(item, float):
