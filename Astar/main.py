@@ -94,13 +94,13 @@ def a_star(start: tuple, goal: tuple, obstacles: set) -> list:
         closed_list.append(current)
 
         for neighbor in get_neighbors(current):
-            if (neighbor in closed_list) or (neighbor in obstacles):
+            if ...:  # TODO: Determine if the current neighbor needs to be skipped
                 continue
             tentative_g_score = g[current] + 1
 
             if neighbor not in open_list:
-                open_list.append(neighbor)
-            elif tentative_g_score >= g[neighbor]:
+                ...  # TODO: add neighbor to open list
+            elif ...:  # TODO: Determine if the tentative g score is greater than the g score of the neighbor
                 continue
 
             parents[neighbor] = current
