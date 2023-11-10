@@ -10,19 +10,19 @@ def get_neighbors(point: tuple) -> list:
     x, y = point
     neighbors = []
 
-    # 检查上方邻居
+    # check the top neighbor
     if y > 0:
         neighbors.append((x, y - 1))
 
-    # 检查下方邻居
+    # check the bottom neighbor
     if y < 9:
         neighbors.append((x, y + 1))
 
-    # 检查左边邻居
+    # check the left neighbor
     if x > 0:
         neighbors.append((x - 1, y))
 
-    # 检查右边邻居
+    # check the right neighbor
     if x < 9:
         neighbors.append((x + 1, y))
 

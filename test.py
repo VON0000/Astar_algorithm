@@ -1,4 +1,4 @@
-# Desc: 测试文件
+# Desc: Test file for A* algorithm
 from matplotlib import pyplot as plt
 
 from Astar.getdata import generate_dataset
