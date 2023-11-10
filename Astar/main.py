@@ -29,6 +29,20 @@ def get_neighbors(point: tuple) -> list:
     return neighbors
 
 
+def get_current_node(open_list: list, g: dict, goal: tuple) -> tuple:
+    current = min(open_list, key=lambda x: g[x] + heuristic(x, goal))
+    return current
+
+
+def get_path(parents: dict, start: tuple, current: tuple) -> list:
+    path = []
+    while parents[current] != current:
+        path.append(current)
+        current = parents[current]
+    path.append(start)
+    return path[::-1]
+
+
 def a_star(start: tuple, goal: tuple, obstacles: set) -> list:
     open_list = [start]
     closed_list = []
@@ -36,15 +50,10 @@ def a_star(start: tuple, goal: tuple, obstacles: set) -> list:
     parents = {start: start}
 
     while len(open_list) > 0:
-        current = min(open_list, key=lambda x: g[x] + heuristic(x, goal))
+        current = get_current_node(open_list, g, goal)
 
         if current == goal:
-            path = []
-            while parents[current] != current:
-                path.append(current)
-                current = parents[current]
-            path.append(start)
-            return path[::-1]
+            return get_path(parents, start, current)
 
         open_list.remove(current)
         closed_list.append(current)
