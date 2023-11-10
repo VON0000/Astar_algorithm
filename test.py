@@ -2,7 +2,7 @@
 from matplotlib import pyplot as plt
 
 from Astar.getdata import generate_dataset
-from Astar.main import get_neighbors, get_current_node
+from Astar.main import get_neighbors, get_current_node, heuristic, get_path
 from Astar.plot import add_to_floats
 
 
@@ -47,3 +47,20 @@ def test_get_current_node():
     goal = (2, 2)
     current = get_current_node(open_list, g, goal)
     print(current)
+
+
+def test_heuristic():
+    # (0,0), (1,1)
+    node = (0, 0)
+    goal = (1, 1)
+    h = heuristic(node, goal)
+    print(h)
+
+
+def test_get_path():
+    # {(0,0):(0,0), (1,1):(0,0), (2,2):(1,1)}, (0,0), (1,1)
+    parents = {(0, 0): (0, 0), (1, 1): (0, 0), (2, 2): (1, 1)}
+    start = (0, 0)
+    current = (1, 1)
+    path = get_path(parents, start, current)
+    print(path)

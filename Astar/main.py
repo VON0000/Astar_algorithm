@@ -1,11 +1,22 @@
-import math
-
 from Astar.getdata import generate_dataset
 from Astar.plot import draw_grid_origin, plot_grid
 
 
 def heuristic(node: tuple, goal: tuple) -> float:
-    return math.sqrt(abs(node[0] - goal[0]) ** 2 + abs(node[1] - goal[1]) ** 2)
+    """
+    Calculate the heuristic value of a node by using the Euclidean distance
+    Attention: use math module by "import math"
+    :param node: the current node
+    :param goal: the goal node
+    :return: the heuristic value
+
+    >>> heuristic((0,0), (1,1))
+    1.4142135623730951
+    >>> heuristic((0,0), (2,2))
+    2.8284271247461903
+    >>> heuristic((0,0), (0,0))
+    0.0
+    """
 
 
 def get_neighbors(point: tuple) -> list:
@@ -51,12 +62,20 @@ def get_current_node(open_list: list, g: dict, goal: tuple) -> tuple:
 
 
 def get_path(parents: dict, start: tuple, current: tuple) -> list:
-    path = []
-    while parents[current] != current:
-        path.append(current)
-        current = parents[current]
-    path.append(start)
-    return path[::-1]
+    """
+    Get the path from the start node to the goal node
+    :param parents:  the dictionary of parents
+    :param start:  the start node
+    :param current:  the goal node
+    :return:  the path from the start node to the goal node
+
+    >>> get_path({(0,0):(0,0), (1,1):(0,0), (2,2):(1,1)}, (0,0), (2,2))
+    [(0, 0), (1, 1), (2, 2)]
+    >>> get_path({(0,0):(0,0), (1,1):(0,0), (2,2):(1,1)}, (0,0), (1,1))
+    [(0, 0), (1, 1)]
+    >>> get_path({(0,0):(0,0), (1,1):(0,0), (2,2):(1,1)}, (0,0), (0,0))
+    [(0, 0)]
+    """
 
 
 def a_star(start: tuple, goal: tuple, obstacles: set) -> list:
