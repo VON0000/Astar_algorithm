@@ -1,3 +1,5 @@
+import math
+
 from getdata import generate_dataset
 from plot import draw_grid_origin, plot_grid
 
@@ -30,7 +32,15 @@ def get_neighbors(point: tuple) -> list:
 
 
 def get_current_node(open_list: list, g: dict, goal: tuple) -> tuple:
-    current = min(open_list, key=lambda x: g[x] + heuristic(x, goal))
+    min_value = float('inf')
+    current = None
+
+    for x in open_list:
+        value = g[x] + heuristic(x, goal)
+        if value < min_value:
+            min_value = value
+            current = x
+
     return current
 
 
