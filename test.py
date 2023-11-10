@@ -1,9 +1,9 @@
 # Desc: 测试文件
 from matplotlib import pyplot as plt
 
-from getdata import generate_dataset
-from main import get_neighbors
-from plot import add_to_floats
+from Astar.getdata import generate_dataset
+from Astar.main import get_neighbors
+from Astar.plot import add_to_floats
 
 
 def test_get_neighbors():
