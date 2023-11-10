@@ -1,9 +1,11 @@
+import math
+
 from getdata import generate_dataset
 from plot import draw_grid_origin, plot_grid
 
 
 def heuristic(node: tuple, goal: tuple) -> float:
-    return abs(node[0] - goal[0]) + abs(node[1] - goal[1])
+    return math.sqrt(abs(node[0] - goal[0]) ** 2 + abs(node[1] - goal[1]) ** 2)
 
 
 def get_neighbors(point: tuple) -> list:
