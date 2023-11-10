@@ -3,7 +3,7 @@ import copy
 from matplotlib import pyplot as plt, patches
 
 
-def draw_grid_origin(dataset: dict):
+def environment_plot(dataset: dict):
     fig, ax = plt.subplots()
 
     # Set the grid size
@@ -20,28 +20,18 @@ def draw_grid_origin(dataset: dict):
     add_to_floats(plot_dataset)
     plt.scatter(*plot_dataset["start"], marker='o', color='chartreuse', label='Start', s=40)
     plt.scatter(*plot_dataset["goal"], marker='*', color='dodgerblue', label='Goal', s=40)
+
+
+def draw_grid_origin(dataset: dict):
+    environment_plot(dataset)
     plt.show()
 
 
 def plot_grid(dataset: dict, path: list):
-    fig, ax = plt.subplots()
 
-    # Set the grid size
-    ax.set_xlim([0, 10])
-    ax.set_ylim([0, 10])
-
-    # add obstacles squares
-    for x in range(10):
-        for y in range(10):
-            if (x, y) in dataset["obstacles"]:
-                square = patches.Rectangle((x, y), 1, 1, fill=True, color='tomato')
-                ax.add_patch(square)
-    plot_dataset = copy.deepcopy(dataset)
+    environment_plot(dataset)
     plot_path = copy.deepcopy(path)
     plot_path = [(item[0] + 0.5, item[1] + 0.5) for item in plot_path]
-    add_to_floats(plot_dataset)
-    plt.scatter(*plot_dataset["start"], marker='o', color='chartreuse', label='Start', s=40)
-    plt.scatter(*plot_dataset["goal"], marker='*', color='dodgerblue', label='Goal', s=40)
     plt.plot(*zip(*plot_path), color='black', label='Path', linewidth=1.0)
     plt.title('A* Algorithm Result')
     plt.show()
