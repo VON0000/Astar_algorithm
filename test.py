@@ -2,7 +2,7 @@
 from matplotlib import pyplot as plt
 
 from Astar.getdata import generate_dataset
-from Astar.main import get_neighbors
+from Astar.main import get_neighbors, get_current_node
 from Astar.plot import add_to_floats
 
 
@@ -38,3 +38,12 @@ def test_add_to_floats():
 
     add_to_floats(example_dict)
     print(example_dict)
+
+
+def test_get_current_node():
+    # [(0,0),(1,1)], {(0,0):0, (1,1):1}, (2,2)
+    open_list = [(0, 0), (1, 1)]
+    g = {(0, 0): 0, (1, 1): 1}
+    goal = (2, 2)
+    current = get_current_node(open_list, g, goal)
+    print(current)

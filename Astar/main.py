@@ -1,37 +1,53 @@
-from getdata import generate_dataset
-from plot import draw_grid_origin, plot_grid
+import math
+
+from Astar.getdata import generate_dataset
+from Astar.plot import draw_grid_origin, plot_grid
 
 
 def heuristic(node: tuple, goal: tuple) -> float:
-    return abs(node[0] - goal[0]) + abs(node[1] - goal[1])
+    return math.sqrt(abs(node[0] - goal[0]) ** 2 + abs(node[1] - goal[1]) ** 2)
 
 
 def get_neighbors(point: tuple) -> list:
-    x, y = point
-    neighbors = []
+    """
+    Get the neighbors of a point in the grid
+    :param point: a set of coordinates
+    :return: the list of neighbors
 
-    # check the top neighbor
-    if y > 0:
-        neighbors.append((x, y - 1))
-
-    # check the bottom neighbor
-    if y < 9:
-        neighbors.append((x, y + 1))
-
-    # check the left neighbor
-    if x > 0:
-        neighbors.append((x - 1, y))
-
-    # check the right neighbor
-    if x < 9:
-        neighbors.append((x + 1, y))
-
-    return neighbors
+    >>> (0,1) in get_neighbors((1,1))
+    True
+    >>> (0,0) in get_neighbors((1,1))
+    False
+    >>> (2,2) in get_neighbors((1,1))
+    False
+    >>> (8,8) in get_neighbors((9,9))
+    False
+    >>> (9,8) in get_neighbors((9,9))
+    True
+    >>> (8,9) in get_neighbors((9,9))
+    True
+    >>> (9,9) in get_neighbors((9,9))
+    False
+    """
 
 
 def get_current_node(open_list: list, g: dict, goal: tuple) -> tuple:
-    current = min(open_list, key=lambda x: g[x] + heuristic(x, goal))
-    return current
+    """
+    Get the current node from the open list
+    :param open_list: the list of nodes to be explored
+    :param g: the cost to reach the current node
+    :param goal: the goal node
+    :return: the current node
+
+    >>> get_current_node([(0,0),(1,1)], {(0,0):0, (1,1):1}, (2,2))
+    (1, 1)
+    >>> get_current_node([(3,4), (5,7)], {(3,4):2, (5,7):5}, (8,8))
+    (5, 7)
+    >>> get_current_node([(0,0), (9,9), (5,5)], {(0,0):0, (9,9):9, (5,5):4}, (6,6))
+    (5, 5)
+    >>> get_current_node([(2,3), (7,4)], {(2,3):3, (7,4):6}, (7,7))
+    (7, 4)
+    """
 
 
 def get_path(parents: dict, start: tuple, current: tuple) -> list:
