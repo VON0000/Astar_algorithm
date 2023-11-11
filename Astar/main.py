@@ -110,8 +110,8 @@ def a_star(start: tuple, goal: tuple, obstacles: set) -> list:
 
 
 if __name__ == '__main__':
-    grid_size = 10  # Set grid size
-    num_obstacles = 25  # Total number of obstacles
+    grid_size = 20  # Set grid size
+    num_obstacles = 100  # Total number of obstacles
     dataset = generate_dataset(num_obstacles, grid_size)
     draw_grid_origin(dataset, grid_size)
     path = a_star(dataset["start"], dataset["goal"], dataset["obstacles"])
