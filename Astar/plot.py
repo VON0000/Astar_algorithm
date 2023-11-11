@@ -3,16 +3,16 @@ import copy
 from matplotlib import pyplot as plt, patches
 
 
-def environment_plot(dataset: dict):
+def environment_plot(dataset: dict, grid_size: int = 10):
     fig, ax = plt.subplots()
 
     # Set the grid size
-    ax.set_xlim([0, 10])
-    ax.set_ylim([0, 10])
+    ax.set_xlim([0, grid_size])
+    ax.set_ylim([0, grid_size])
 
     # add obstacles squares
-    for x in range(10):
-        for y in range(10):
+    for x in range(grid_size):
+        for y in range(grid_size):
             if (x, y) in dataset["obstacles"]:
                 square = patches.Rectangle((x, y), 1, 1, fill=True, color='tomato')
                 ax.add_patch(square)
@@ -22,14 +22,14 @@ def environment_plot(dataset: dict):
     plt.scatter(*plot_dataset["goal"], marker='*', color='dodgerblue', label='Goal', s=40)
 
 
-def draw_grid_origin(dataset: dict):
-    environment_plot(dataset)
+def draw_grid_origin(dataset: dict, grid_size: int = 10):
+    environment_plot(dataset, grid_size)
     plt.show()
 
 
-def plot_grid(dataset: dict, path: list):
+def plot_grid(dataset: dict, path: list, grid_size: int = 10):
 
-    environment_plot(dataset)
+    environment_plot(dataset, grid_size)
     plot_path = copy.deepcopy(path)
     plot_path = [(item[0] + 0.5, item[1] + 0.5) for item in plot_path]
     plt.plot(*zip(*plot_path), color='black', label='Path', linewidth=1.0)
