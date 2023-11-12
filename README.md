@@ -1,6 +1,6 @@
 # Astar algorithm
 ## branch: master
-Normal code for the A algorithm. :grinning:
+Normal code for the A* algorithm. :grinning:
 
 ## branch: fill_in_the_blank
 A fill-in-the-blank question for the class of CAUC. :scroll:
